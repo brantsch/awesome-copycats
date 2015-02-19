@@ -123,7 +123,7 @@ lain.widgets.calendar:attach(mytextclock, { font_size = 10 })
 
 -- Weather
 weathericon = wibox.widget.imagebox(beautiful.widget_weather)
-yawn = lain.widgets.yawn(123456, {
+yawn = lain.widgets.yawn(663545, { -- Fetch wheather for Ingolstadt
     settings = function()
         widget:set_markup(markup("#eca4c4", forecast:lower() .. " @ " .. units .. "°C "))
     end
@@ -425,9 +425,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey }, "Escape", awful.tag.history.restore),
 
-    -- Non-empty tag browsing
-    awful.key({ altkey }, "Left", function () lain.util.tag_view_nonempty(-1) end),
-    awful.key({ altkey }, "Right", function () lain.util.tag_view_nonempty(1) end),
+    -- -- Non-empty tag browsing
+    -- awful.key({ altkey }, "Left", function () lain.util.tag_view_nonempty(-1) end),
+    -- awful.key({ altkey }, "Right", function () lain.util.tag_view_nonempty(1) end),
 
     -- Default client focus
     awful.key({ altkey }, "k",
@@ -512,48 +512,43 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey,           }, "w",      function () yawn.show(7) end),
 
     -- ALSA volume control
-    awful.key({ altkey }, "Up",
+    awful.key({}, "XF86AudioRaiseVolume",
         function ()
             awful.util.spawn("amixer -q set Master 1%+")
             volumewidget.update()
         end),
-    awful.key({ altkey }, "Down",
+    awful.key({}, "XF86AudioLowerVolume",
         function ()
             awful.util.spawn("amixer -q set Master 1%-")
             volumewidget.update()
         end),
-    awful.key({ altkey }, "m",
+    awful.key({}, "XF86AudioMute",
         function ()
             awful.util.spawn("amixer -q set Master playback toggle")
             volumewidget.update()
         end),
-    awful.key({ altkey, "Control" }, "m",
-        function ()
-            awful.util.spawn("amixer -q set Master playback 100%")
-            volumewidget.update()
-        end),
 
-    -- MPD control
-    awful.key({ altkey, "Control" }, "Up",
-        function ()
-            awful.util.spawn_with_shell("mpc toggle || ncmpc toggle || pms toggle")
-            mpdwidget.update()
-        end),
-    awful.key({ altkey, "Control" }, "Down",
-        function ()
-            awful.util.spawn_with_shell("mpc stop || ncmpc stop || pms stop")
-            mpdwidget.update()
-        end),
-    awful.key({ altkey, "Control" }, "Left",
-        function ()
-            awful.util.spawn_with_shell("mpc prev || ncmpc prev || pms prev")
-            mpdwidget.update()
-        end),
-    awful.key({ altkey, "Control" }, "Right",
-        function ()
-            awful.util.spawn_with_shell("mpc next || ncmpc next || pms next")
-            mpdwidget.update()
-        end),
+--    -- MPD control
+--    awful.key({ altkey, "Control" }, "Up",
+--        function ()
+--            awful.util.spawn_with_shell("mpc toggle || ncmpc toggle || pms toggle")
+--            mpdwidget.update()
+--        end),
+--    awful.key({ altkey, "Control" }, "Down",
+--        function ()
+--            awful.util.spawn_with_shell("mpc stop || ncmpc stop || pms stop")
+--            mpdwidget.update()
+--        end),
+--    awful.key({ altkey, "Control" }, "Left",
+--        function ()
+--            awful.util.spawn_with_shell("mpc prev || ncmpc prev || pms prev")
+--            mpdwidget.update()
+--        end),
+--    awful.key({ altkey, "Control" }, "Right",
+--        function ()
+--            awful.util.spawn_with_shell("mpc next || ncmpc next || pms next")
+--            mpdwidget.update()
+--        end),
 
     -- Copy to clipboard
     awful.key({ modkey }, "c", function () os.execute("xsel -p -o | xsel -i -b") end),
