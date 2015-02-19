@@ -185,7 +185,19 @@ batwidget = lain.widgets.bat({
             bat_now.perc = bat_now.perc .. "% "
         end
         widget:set_text(bat_now.perc)
-    end
+    end,
+    battery = "BAT0"
+})
+batwidget2 = lain.widgets.bat({
+    settings = function()
+        if bat_now.perc == "N/A" then
+            bat_now.perc = "AC "
+        else
+            bat_now.perc = bat_now.perc .. "% "
+        end
+        widget:set_text(bat_now.perc)
+    end,
+    battery = "BAT1"
 })
 
 -- ALSA volume
@@ -362,6 +374,7 @@ for s = 1, screen.count() do
     right_layout:add(tempwidget)
     right_layout:add(baticon)
     right_layout:add(batwidget)
+    right_layout:add(batwidget2)
     right_layout:add(clockicon)
     right_layout:add(mytextclock)
 
