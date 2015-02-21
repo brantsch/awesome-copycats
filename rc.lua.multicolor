@@ -528,6 +528,16 @@ globalkeys = awful.util.table.join(
             volumewidget.update()
         end),
 
+    -- Laptop brightness control
+    awful.key({}, "XF86MonBrightnessUp",
+        function ()
+            awful.util.spawn("xbacklight -inc 1 -steps 1 -time 0")
+        end),
+    awful.key({}, "XF86MonBrightnessDown",
+        function ()
+            awful.util.spawn("xbacklight -dec 1 -steps 1 -time 0")
+        end),
+
 --    -- MPD control
 --    awful.key({ altkey, "Control" }, "Up",
 --        function ()
