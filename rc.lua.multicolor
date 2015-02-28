@@ -694,7 +694,11 @@ awful.rules.rules = {
     -- make virt viewer float
     { rule = { class = "Virt Viewer" },
             properties = { floating = true }
-    }
+    },
+
+    { rule = { class = "Keepassx" },
+            properties = { floating = true }
+    },
 }
 -- }}}
 
